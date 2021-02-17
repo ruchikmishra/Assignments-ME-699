@@ -1,4 +1,4 @@
-# README
+# Assignment 1 ME699
 
 ## Setup
 
