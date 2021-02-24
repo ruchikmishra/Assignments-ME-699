@@ -1,0 +1,363 @@
+<?xml version="1.0"?>
+
+<robot name="Robot">
+
+  <link name="base_link">
+    <visual>
+      <geometry> <box size="0.4 0.2 0.6" />  </geometry>
+      <material name="green"><color rgba="0 1 0 1" />  </material>
+    </visual>
+  </link>
+
+  <joint name="joint base link and one" type="continuous">
+    <parent link="base_link" />
+    <child link="link one" />
+    <origin xyz="0 0 0.3" rpy = "0 0 0"/>
+    <axis xyz="0 0 1" />
+    <dynamics damping="0.1" />
+  </joint>
+
+  <link name="link one">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="1" ixy="0" ixz="0" iyy="0.083" iyz="0" izz="1" />
+    </inertial>
+    <visual>
+         <origin xyz="0.5 0 0"/>
+         <geometry> <box size="1.0 0.05 0.05" /></geometry>
+         <material name="red">  <color rgba="1 0 0 1" /></material>
+    </visual>
+  </link>
+
+  <joint name="joint one and two" type="continuous">
+    <parent link="link one" />
+    <child link="link two" />
+    <origin xyz="1 0 0" rpy = "0 0 0"/>
+    <axis xyz="1 0 0" />
+    <dynamics damping="0.1" />
+  </joint>
+
+  <link name="link two">
+    <inertial>
+      <origin xyz="0.5 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="1" ixy="0" ixz="0" iyy="0.33" iyz="0" izz="1" />
+    </inertial>
+    <visual>
+      <origin xyz="0.5 0 0 "/>
+      <geometry>  <box size="1.0 0.05 0.05" /> </geometry>
+      <material name="blue"> <color rgba="0 0 1 1" /> </material>
+    </visual>
+  </link>
+
+  <joint name="joint two and three" type="continuous">
+    <parent link="link two" />
+    <child link="link three" />
+    <origin xyz="1.0 0.0 0" rpy="0.0 0 0 "/>
+    <axis xyz="0 1 0" />
+    <dynamics damping="0.1" />
+  </joint>
+
+  <link name="link three">
+    <inertial>
+      <origin xyz="0.5 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="1" ixy="0" ixz="0" iyy="0.33" iyz="0" izz="1" />
+    </inertial>
+    <visual>
+      <origin xyz="0.5 0 0 "/>
+      <geometry>  <box size="1.05 0.05 0.05" /> </geometry>
+      <material name="green"> <color rgba="0 1 0 1" /> </material>
+    </visual>
+  </link>
+
+  <joint name="joint three and four" type="continuous">
+    <parent link="link three" />
+    <child link="link four" />
+    <origin xyz="1.0 0.0 0" rpy="0.0 0 0 "/>
+    <axis xyz="0 0 1" />
+    <dynamics damping="0.1" />
+  </joint>
+
+  <link name="link four">
+    <inertial>
+      <origin xyz="0.5 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="1" ixy="0" ixz="0" iyy="0.33" iyz="0" izz="1" />
+    </inertial>
+    <visual>
+      <origin xyz="0.5 0 0 "/>
+      <geometry>  <box size="1.05 0.05 0.05" /> </geometry>
+      <material name="red">  <color rgba="1 0 0 1" /></material>
+    </visual>
+  </link>
+
+  <joint name="joint four and five" type="continuous">
+    <parent link="link four" />
+    <child link="link five" />
+    <origin xyz="1.0 0.0 0" rpy="0.0 0 0 "/>
+    <axis xyz="0 1 0" />
+    <dynamics damping="0.1" />
+  </joint>
+
+  <link name="link five">
+    <inertial>
+      <origin xyz="0.5 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="1" ixy="0" ixz="0" iyy="0.33" iyz="0" izz="1" />
+    </inertial>
+    <visual>
+      <origin xyz="0.5 0 0 "/>
+      <geometry>  <box size="1.05 0.05 0.05" /> </geometry>
+      <material name="blue"> <color rgba="0 0 1 1" /> </material>
+    </visual>
+  </link>
+
+  <joint name="joint four and six" type="continuous">
+    <parent link="link four" />
+    <child link="link six" />
+    <origin xyz="1.0 0.0 0" rpy="0.0 0 0 "/>
+    <axis xyz="0 1 0" />
+    <dynamics damping="0.1" />
+  </joint>
+
+  <link name="link six">
+    <inertial>
+      <origin xyz="0.5 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="1" ixy="0" ixz="0" iyy="0.33" iyz="0" izz="1" />
+    </inertial>
+    <visual>
+      <origin xyz="0.5 0 0 "/>
+      <geometry>  <box size="1.05 0.05 0.05" /> </geometry>
+      <material name="blue"> <color rgba="0 0 1 1" /> </material>
+    </visual>
+  </link>
+
+  <joint name="joint five and seven" type="continuous">
+    <parent link="link five" />
+    <child link="link seven" />
+    <origin xyz="1.0 0.0 0" rpy="0.0 0 0 "/>
+    <axis xyz="0 1 0" />
+    <dynamics damping="0.1" />
+  </joint>
+
+  <link name="link seven">
+    <inertial>
+      <origin xyz="0.5 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="1" ixy="0" ixz="0" iyy="0.33" iyz="0" izz="1" />
+    </inertial>
+    <visual>
+      <origin xyz="0.5 0 0 "/>
+      <geometry>  <box size="1.05 0.05 0.05" /> </geometry>
+      <material name="green"> <color rgba="0 1 0 1" /> </material>
+    </visual>
+  </link>
+
+
+
+
+
+
+
+
+
+
+  <joint name="joint six and eight" type="continuous">
+    <parent link="link six" />
+    <child link="link eight" />
+    <origin xyz="1.0 0.0 0" rpy="0.0 0 0 "/>
+    <axis xyz="0 1 0" />
+    <dynamics damping="0.1" />
+  </joint>
+
+  <link name="link eight">
+    <inertial>
+      <origin xyz="0.5 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="1" ixy="0" ixz="0" iyy="0.33" iyz="0" izz="1" />
+    </inertial>
+    <visual>
+      <origin xyz="0.5 0 0 "/>
+      <geometry>  <box size="1.05 0.05 0.05" /> </geometry>
+      <material name="green"> <color rgba="0 1 0 1" /> </material>
+    </visual>
+  </link>
+
+  <joint name="joint eight and nine" type="continuous">
+    <parent link="link eight" />
+    <child link="link nine" />
+    <origin xyz="1.0 0.0 0" rpy="0.0 0 0 "/>
+    <axis xyz="0 1 0" />
+    <dynamics damping="0.1" />
+  </joint>
+
+  <link name="link nine">
+    <inertial>
+      <origin xyz="0.5 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="1" ixy="0" ixz="0" iyy="0.33" iyz="0" izz="1" />
+    </inertial>
+    <visual>
+      <origin xyz="0.5 0 0 "/>
+      <geometry>  <box size="1.05 0.05 0.05" /> </geometry>
+      <material name="green"> <color rgba="0 1 0 1" /> </material>
+    </visual>
+  </link>
+##############################################################3
+
+
+  <joint name="joint nine and ten" type="continuous">
+    <parent link="link nine" />
+    <child link="link ten" />
+    <origin xyz="1.0 0.0 0" rpy="0.0 0 0 "/>
+    <axis xyz="0 1 0" />
+    <dynamics damping="0.1" />
+  </joint>
+
+  <link name="link ten">
+    <inertial>
+      <origin xyz="0.5 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="1" ixy="0" ixz="0" iyy="0.33" iyz="0" izz="1" />
+    </inertial>
+    <visual>
+      <origin xyz="0.5 0 0 "/>
+      <geometry>  <box size="1.05 0.05 0.05" /> </geometry>
+      <material name="green"> <color rgba="0 1 0 1" /> </material>
+    </visual>
+  </link>
+
+
+  <joint name="joint ten and eleven" type="continuous">
+    <parent link="link ten" />
+    <child link="link eleven" />
+    <origin xyz="1.0 0.0 0" rpy="0.0 0 0 "/>
+    <axis xyz="0 1 0" />
+    <dynamics damping="0.1" />
+  </joint>
+
+  <link name="link eleven">
+    <inertial>
+      <origin xyz="0.5 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="1" ixy="0" ixz="0" iyy="0.33" iyz="0" izz="1" />
+    </inertial>
+    <visual>
+      <origin xyz="0.5 0 0 "/>
+      <geometry>  <box size="1.05 0.05 0.05" /> </geometry>
+      <material name="green"> <color rgba="0 1 0 1" /> </material>
+    </visual>
+  </link>
+
+
+
+
+
+####### branch two  ###################
+
+
+<joint name="joint nine and fourteen" type="continuous">
+    <parent link="link nine" />
+    <child link="link fourteen" />
+    <origin xyz="1.0 0.0 0" rpy="0.0 0 0 "/>
+    <axis xyz="0 1 0" />
+    <dynamics damping="0.1" />
+  </joint>
+
+  <link name="link fourteen">
+    <inertial>
+      <origin xyz="0.5 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="1" ixy="0" ixz="0" iyy="0.33" iyz="0" izz="1" />
+    </inertial>
+    <visual>
+      <origin xyz="0.5 0 0 "/>
+      <geometry>  <box size="1.05 0.05 0.05" /> </geometry>
+      <material name="blue"> <color rgba="0 1 1 1" /> </material>
+    </visual>
+  </link>
+
+  <joint name="joint fourteen and fifteen" type="continuous">
+    <parent link="link fourteen" />
+    <child link="link fifteen" />
+    <origin xyz="1.0 0.0 0" rpy="0.0 0 0 "/>
+    <axis xyz="0 1 0" />
+    <dynamics damping="0.1" />
+  </joint>
+
+  <link name="link fifteen">
+    <inertial>
+      <origin xyz="0.5 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="1" ixy="0" ixz="0" iyy="0.33" iyz="0" izz="1" />
+    </inertial>
+    <visual>
+      <origin xyz="0.5 0 0 "/>
+      <geometry>  <box size="1.05 0.05 0.05" /> </geometry>
+      <material name="green"> <color rgba="1 1 0 1" /> </material>
+    </visual>
+  </link>
+
+
+
+
+##########################
+  <joint name="joint eleven and twelve" type="continuous">
+    <parent link="link seven" />
+    <child link="link twelve" />
+    <origin xyz="1.0 0.0 0" rpy="0.0 0 0 "/>
+    <axis xyz="0 1 0" />
+    <dynamics damping="0.1" />
+  </joint>
+
+  <link name="link twelve">
+    <inertial>
+      <origin xyz="0.5 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="1" ixy="0" ixz="0" iyy="0.33" iyz="0" izz="1" />
+    </inertial>
+    <visual>
+      <origin xyz="0.5 0 0 "/>
+      <geometry>  <box size="1.05 0.05 0.05" /> </geometry>
+      <material name="green"> <color rgba="0 1 0 1" /> </material>
+    </visual>
+  </link>
+
+
+
+  <joint name="joint twelve and thirteen" type="continuous">
+    <parent link="link twelve" />
+    <child link="link thirteen" />
+    <origin xyz="1.0 0.0 0" rpy="0.0 0 0 "/>
+    <axis xyz="0 1 0" />
+    <dynamics damping="0.1" />
+  </joint>
+
+  <link name="link thirteen">
+    <inertial>
+      <origin xyz="0.5 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="1" ixy="0" ixz="0" iyy="0.33" iyz="0" izz="1" />
+    </inertial>
+    <visual>
+      <origin xyz="0.5 0 0 "/>
+      <geometry>  <box size="1.05 0.05 0.05" /> </geometry>
+      <material name="green"> <color rgba="1 1 0 1" /> </material>
+    </visual>
+  </link>
+
+
+
+
+
+
+
+
+
+
+
+
+</robot>
