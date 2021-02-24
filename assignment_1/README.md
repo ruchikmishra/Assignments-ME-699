@@ -2,9 +2,10 @@
 
 ## Setup
 
-This assignment has two URDF files for describing two manipulators:
+This assignment has three URDF files for describing two manipulators:
 - `arm_edit.urdf`
 - `arm_13dof.urdf`
+- `assignment_one_draft.urdf`
 
 #### Without branching
 The `arm_edit.urdf` has a 12 Dof manipulator with no branching. This manipulator can be visualized by following the setup steps:
@@ -21,34 +22,29 @@ To run the program to visualize and animate the 12 DoF robot, run the following 
 
 ```sh
 julia
-include("start_new.jl")
+include("main_k.jl")
 ```
 
-To change the configuration of the manipulator, change the desired coordinates in the `start_new.jl` in this line:
+To change the configuration of the manipulator, change the desired coordinates from the terminal itself:
 :
 
 
 ```sh
-desired_tip_location = Point3D(root_frame(mechanism), 0.2, 1, 0.1)
+q = [x,y,z]
+desired_tip_location = Point3D(root_frame(mechanism), q)
+jacobian_transpose_ik!(state, body, point, desired_tip_location)
+set_configuration!(vis, configuration(state))
 ```
 By setting the desired tip location, the end effectors (here: the tip of the last link) goes to the same following inverse kinematics.
 
 #### With branching
 
-The `arm_13dof.urdf` has two branches that are attached to the base frame. The manipulator can be visualized by following the commands:
+The `assignment_one_draft.urdf` has two branches that can be visualized by following the commands:
 
 ```sh
 julia
-include("startup_new.jl")
+include("main_k.jl")
 ```
-To change the configuration of the manipulator, change the desired coordinates in the `startup_new.jl` in this line:
-
-```sh
-desired_tip_location_two = Point3D(root_frame(mechanism), 0.1, 0, 0)
-```
-
-By setting the desired tip location, the end effector (here: the tips of the last links of the both the branches) follow inverse kinematics to reach to the goal point.
-
 
 
 
