@@ -22,7 +22,7 @@ To run the program to visualize and animate the 12 DoF robot, run the following 
 
 ```sh
 julia
-include("main_k.jl")
+include("startup_new.jl")
 ```
 
 To change the configuration of the manipulator, change the desired coordinates from the terminal itself:
@@ -57,5 +57,5 @@ include("main_k.jl")
 - Samrat Pravin Patel: sppa242@uky.edu
 
 ## Acknowledgement
-- Dr. Hasan Poonawala
-- Keith Russell
+- Dr. Hasan Poonawala for providing all the base codes for building up the urdf files.
+- Keith Russell for helping with the main_k.jl file and for the base urdf code.
