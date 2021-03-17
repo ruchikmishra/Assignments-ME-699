@@ -24,17 +24,23 @@ For, a loss of control scenario, it becomes essential for an unammned aerial veh
 - $f$: vector of non-linear functions
 - $x$: state vector.
 - $u$: control vector.
+- $x^{*},u^{*},\gamma^{*},\psi^{*}$: for the desired steady state maneuvers.
 
 
 
 
 ### Specific problem
-In this paper, a feed forward neural network is used for estimating the flight envelop of a fixed wing UAV for any degree of loss of flight scenario. It accounts for both single or compound failures that involve structural, control surface, energy, aileron and sensor failure. This is done using decomposing each subsystem into a number of neural networks of the same structure.  
+In this paper, a feed forward neural network is used for estimating the flight envelop of a fixed wing UAV for any degree of loss of flight scenario. It accounts for both single or compound failures that involve structural, control surface, energy, aileron and sensor failure. This is done using decomposing each subsystem into a number of neural networks of the same structure.
 
 
 
 ### Solution ideas
+- The maneuvering flight envelops are defined as the boundaries containing steady state maneuvers.
+- The maneuvering flight envelops comprises of 4 parameter trim states: $(h^{*},V^{*},\gamma^{*},\dot{\psi}^{*})$ which hsa the state and control vectors coreesponding to each trim state as:
+  - $x^{*}(h^{*},V^{*},\gamma^{*},\dot{\psi}^{*})$
+  - $u^{*}(h^{*},V^{*},\gamma^{*},\dot{\psi}^{*})$
 
+  which also means that at each constant flight altitude $h^{*}$, these represent 3D volumes.
 - Due to the infeasibility of fitting a 3D envelop to the manuevering flight, the flight path is taken as one of the inputs of the system.
 - In addition to it, the flight altitude is also taken as the input along with the parameters that are lost due to the different types of failure that can occur (structural, energy, actuator, sensor).
 -   The following equation shows the longitudinal body axis force coefficient:
