@@ -5,7 +5,7 @@
 @def year = "2012"
 @def hasmath = true
 @def review = true
-@def tags = ["Path planning"]
+@def tags = ["trajectory generation"]
 @def reviewers = ["Ruchik Mishra"]
 
 \toc
