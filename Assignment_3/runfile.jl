@@ -17,9 +17,9 @@ T = 10
 
 function Traj(t)
 
-   q_of_t = q_start + ((2*t^2)/(T^2) - (8*t^3/T^3) )*(q_end - q_start)
-   q_dot_of_t = ((4*t)/(T^2) - (24*t^2/T^3) )*(q_end - q_start)
-   q_ddot_of_t = (4/(T^2) - (48*t)/(T^3) )*(q_end - q_start)
+   q_of_t = q_start + ((3*t^2)/(T^2) - (2*t^3/T^3) )*(q_end - q_start)
+   q_dot_of_t = ((6*t)/(T^2) - (6*t^2/T^3) )*(q_end - q_start)
+   q_ddot_of_t = (6/(T^2) - (12*t)/(T^3) )*(q_end - q_start)
 
 
   return q_of_t, q_dot_of_t, q_ddot_of_t
@@ -48,8 +48,8 @@ function Control_PD!(τ, t, state)
 q_start = [0.01;-0.5;-0.0;-2.0;-0.3;1.5;-0.7;0.1;0.1]
 q_end = [0.0;0.0;0.0;0.0;0.0;pi;0.01;0.01;0.01]
 T = 10
-    kp = 450
-    kd = 90
+    kp = 600
+    kd = 50
     q_of_t,q_dot_of_t,q_ddot_of_t =Traj(t)
     τ .= -diagm(kd*[1,1,1,1,1,1,1,1,1])*(velocity(state)-q_dot_of_t) - diagm(kp*[1,1,1,1,1,1,1,1,1])*(configuration(state) - q_of_t)
     act_sat = 50; # Actuator limits
