@@ -41,8 +41,24 @@ Controller(1)
 ```sh
 Controller(2)
 ```
+
+For the error norm to less than 0.01, the gains for the PD controller were:
+- Kp = 600
+- Kd =50
+
+For the error norm to less than 0.01, the gains for the CTC were:
+- Kp =0.5
+- Kd = 0.8
+
+## Observation
+
+Not all polynomial functions gave me an error norm less than 0.01. So, the reference for the cubic polynomial used was taken from the Modern Robotics textbook. 
+
+## Author
+- Ruchik Mishra
+
 ## Acknowledgement
 
 - Dr. Hasan Poonawala
 -  Pouya Samanipour
--  Keith Russell 
+-  Keith Russell
