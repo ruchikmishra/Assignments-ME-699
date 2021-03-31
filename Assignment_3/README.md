@@ -37,7 +37,7 @@ In this problem a cubic polynomial has been used.
 ```sh
 Controller(1)
 ```
-- To get the output of the control_PD! function, run the following:
+- To get the output of the control_CTC! function, run the following:
 ```sh
 Controller(2)
 ```
@@ -52,7 +52,7 @@ For the error norm to less than 0.01, the gains for the CTC were:
 
 ## Observation
 
-Not all polynomial functions gave me an error norm less than 0.01. So, the reference for the cubic polynomial used was taken from the Modern Robotics textbook. 
+Not all polynomial functions gave me an error norm less than 0.01. So, the reference for the cubic polynomial used was taken from the Modern Robotics textbook.
 
 ## Author
 - Ruchik Mishra
