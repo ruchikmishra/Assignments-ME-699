@@ -45,8 +45,8 @@ end
 #.......................Function PD................................................
 
 function Control_PD!(τ, t, state)
-    kp = 100
-    kd = 50
+    kp = 450
+    kd = 90
     q_of_t,q_dot_of_t,q_ddot_of_t =Traj(t)
     τ .= -diagm(kd*[1,1,1,1,1,1,1,1,1])*(velocity(state)-q_dot_of_t) - diagm(kp*[1,1,1,1,1,1,1,1,1])*(configuration(state) - q_of_t)
     act_sat = 50; # Actuator limits
@@ -70,7 +70,7 @@ function Control_CTC!(τ, t, state)
     q_dot = velocity(state)
     e = q_of_t-q
     e_dot = q_dot_of_t-q_dot
-    τ .= M*(DDQ + kp * e + kd * e_dot)+dynamics_bias(state)
+    τ .= M*(q_ddot_of_t + kp * e + kd * e_dot)+dynamics_bias(state)
     act_sat = 50; # Actuator limits
     τ .= map( x -> x > act_sat ? act_sat : x,τ)
     τ .= map( x -> x < -act_sat ? -act_sat : x,τ)
