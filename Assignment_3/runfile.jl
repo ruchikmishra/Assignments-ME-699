@@ -18,8 +18,8 @@ T = 10
 function Traj(t)
 
    q_of_t = q_start + ((2*t^2)/(T^2) - (8*t^3/T^3) )*(q_end - q_start)
-   q_dot_of_t = ((6*t)/(T^2) - (6*t^2/T^3) )*(q_end - q_start)
-   q_ddot_of_t = (6/(T^2) - (12*t)/(T^3) )*(q_end - q_start)
+   q_dot_of_t = ((4*t)/(T^2) - (24*t^2/T^3) )*(q_end - q_start)
+   q_ddot_of_t = (4/(T^2) - (48*t)/(T^3) )*(q_end - q_start)
 
 
   return q_of_t, q_dot_of_t, q_ddot_of_t
@@ -45,6 +45,9 @@ end
 #.......................Function PD................................................
 
 function Control_PD!(τ, t, state)
+q_start = [0.01;-0.5;-0.0;-2.0;-0.3;1.5;-0.7;0.1;0.1]
+q_end = [0.0;0.0;0.0;0.0;0.0;pi;0.01;0.01;0.01]
+T = 10
     kp = 450
     kd = 90
     q_of_t,q_dot_of_t,q_ddot_of_t =Traj(t)
@@ -68,6 +71,7 @@ function Control_CTC!(τ, t, state)
 
     q = configuration(state)
     q_dot = velocity(state)
+
     e = q_of_t-q
     e_dot = q_dot_of_t-q_dot
     τ .= M*(q_ddot_of_t + kp * e + kd * e_dot)+dynamics_bias(state)
