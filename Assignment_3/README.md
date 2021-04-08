@@ -35,11 +35,11 @@ In this problem a cubic polynomial has been used.
 
 - Further, to get the output of the control_PD! function, run the following:
 ```sh
-Controller(1)
+Controller(PD)
 ```
 - To get the output of the control_CTC! function, run the following:
 ```sh
-Controller(2)
+Controller(CTC)
 ```
 
 For the error norm to less than 0.01, the gains for the PD controller were:

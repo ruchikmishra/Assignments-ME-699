@@ -17,6 +17,15 @@ T = 10
 
 function Traj(t)
 
+#q_of_t = q_start + ((8*t^2)/(T^2) - (9*t^3/T^3) )*(q_end - q_start)
+#q_dot_of_t = ((16*t)/(T^2) - (27*t^2/T^3) )*(q_end - q_start)
+#q_ddot_of_t = (16/(T^2) - (54*t)/(T^3) )*(q_end - q_start)
+
+
+#q_of_t = q_start + ((8*t)/(T^2) - (9*t^2/T^3))*(q_end - q_start)
+#q_dot_of_t = ((8)/(T^2) - (18*t/T^3) )*(q_end - q_start)
+#q_ddot_of_t = -(18)/(T^3) )*(q_end - q_start)
+
    q_of_t = q_start + ((3*t^2)/(T^2) - (2*t^3/T^3) )*(q_end - q_start)
    q_dot_of_t = ((6*t)/(T^2) - (6*t^2/T^3) )*(q_end - q_start)
    q_ddot_of_t = (6/(T^2) - (12*t)/(T^3) )*(q_end - q_start)
@@ -50,8 +59,10 @@ q_end = [0.0;0.0;0.0;0.0;0.0;pi;0.01;0.01;0.01]
 T = 10
     kp = 600
     kd = 50
+    differential_controller = kd*[1,1,1,1,1,1,1,1,1]
+    propoertional_controller = kp*[1,1,1,1,1,1,1,1,1]
     q_of_t,q_dot_of_t,q_ddot_of_t =Traj(t)
-    τ .= -diagm(kd*[1,1,1,1,1,1,1,1,1])*(velocity(state)-q_dot_of_t) - diagm(kp*[1,1,1,1,1,1,1,1,1])*(configuration(state) - q_of_t)
+    τ .= -diagm(differential_controller)*(velocity(state)-q_dot_of_t) - diagm(propoertional_controller)*(configuration(state) - q_of_t)
     act_sat = 50; # Actuator limits
     τ .= map( x -> x > act_sat ? act_sat : x,τ)
     τ .= map( x -> x < -act_sat ? -act_sat : x,τ)
@@ -83,11 +94,11 @@ end
 
 #..............................................................................
 
-function Controller(i)
-  if i==1
+function Controller(control)
+  if control = "PD"
     system=Control_PD!
   end
-  if i==2
+  if control = "CTC"
     system=Control_CTC!
   end
   vis = Visualizer();open(vis)
@@ -100,8 +111,12 @@ function Controller(i)
 
   # Create state and set initial config and velocity
   state = MechanismState(mechanism)
+
   set_configuration!(state,[0.01;-0.5;-0.0;-2.0;-0.3;1.5;-0.7;0.1;0.1])
+
   zero_velocity!(state)
+
+
 
   # Update mechanism visual
   set_configuration!(mvis, configuration(state))
@@ -109,11 +124,11 @@ function Controller(i)
   problem = ODEProblem(Dynamics(mechanism,system), state, (0., 10.));
 
   sol = solve(problem, Tsit5(),reltol=1e-8,abstol=1e-8);
+    setanimation!(mvis, sol; realtime_rate = 1.0);
 
-#..............Animation.........................................................
-  setanimation!(mvis, sol; realtime_rate = 1.0);
   for i in 1:7
-      println("final joint angle $i : $(sol[end][i])")
+
+      println("The value of the joint angle number $i : $(sol[end][i])")
   end
   error=sol[end][1:7]-q_end[1:7]
   println("error is:$(error)")
